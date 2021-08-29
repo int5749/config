@@ -42,7 +42,7 @@ If you want to contribute configurations to this repository please open a Pull R
 
 ## Meters
 
-- [Discovergy Metering Service (Grid Meter)](#meter-discovergy-metering-service-grid-meter)
+- [Discovergy Metering Service (Grid Meter, PV Meter)](#meter-discovergy-metering-service-grid-meter-pv-meter)
 - [E3DC (Battery Meter)](#meter-e3dc-battery-meter)
 - [E3DC (Grid Meter)](#meter-e3dc-grid-meter)
 - [E3DC (PV Meter)](#meter-e3dc-pv-meter)
@@ -68,7 +68,7 @@ If you want to contribute configurations to this repository please open a Pull R
 - [Multiple SMA Speedwire PV inverters combined (PV Meter)](#meter-multiple-sma-speedwire-pv-inverters-combined-pv-meter)
 - [PowerDog (Grid Meter)](#meter-powerdog-grid-meter)
 - [PowerDog (PV Meter)](#meter-powerdog-pv-meter)
-- [Powerfox Poweropti (Grid Meter)](#meter-powerfox-poweropti-grid-meter)
+- [Powerfox Poweropti (Grid Meter, PV Meter)](#meter-powerfox-poweropti-grid-meter-pv-meter)
 - [RCT Power Storage (Battery Meter)](#meter-rct-power-storage-battery-meter)
 - [RCT Power Storage (Grid Meter)](#meter-rct-power-storage-grid-meter)
 - [RCT Power Storage (PV Meter)](#meter-rct-power-storage-pv-meter)
@@ -126,8 +126,8 @@ If you want to contribute configurations to this repository please open a Pull R
 ### Meters
 
 
-<a id="meter-discovergy-metering-service-grid-meter"></a>
-#### Discovergy Metering Service (Grid Meter)
+<a id="meter-discovergy-metering-service-grid-meter-pv-meter"></a>
+#### Discovergy Metering Service (Grid Meter, PV Meter)
 
 ```yaml
 - type: discovergy
@@ -533,8 +533,8 @@ If you want to contribute configurations to this repository please open a Pull R
       decode: int32
 ```
 
-<a id="meter-powerfox-poweropti-grid-meter"></a>
-#### Powerfox Poweropti (Grid Meter)
+<a id="meter-powerfox-poweropti-grid-meter-pv-meter"></a>
+#### Powerfox Poweropti (Grid Meter, PV Meter)
 
 ```yaml
 - type: custom
