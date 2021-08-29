@@ -1,5 +1,5 @@
 type: sma
-name: SMA Speedwire Inverter (PV or Battery Meter)
+name: SMA Speedwire Inverter (PV Meter, Battery Meter)
 sample: |
   uri: 192.0.2.2
   password: # optional

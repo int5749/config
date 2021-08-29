@@ -76,8 +76,8 @@ If you want to contribute configurations to this repository please open a Pull R
 - [SENEC.Home (Grid Meter)](#meter-senec-home-grid-meter)
 - [SENEC.Home (PV Meter)](#meter-senec-home-pv-meter)
 - [Shelly 3EM (HTTP)](#meter-shelly-3em-http)
-- [SMA Speedwire Inverter (PV or Battery Meter)](#meter-sma-speedwire-inverter-pv-or-battery-meter)
-- [SMA Sunny Home Manager 2.0 / Energy Meter (Grid, PV or Battery Meter)](#meter-sma-sunny-home-manager-2-0--energy-meter-grid-pv-or-battery-meter)
+- [SMA Speedwire Inverter (PV Meter, Battery Meter)](#meter-sma-speedwire-inverter-pv-meter-battery-meter)
+- [SMA Sunny Home Manager 2.0 / Energy Meter (Grid Meter, PV Meter, Battery Meter)](#meter-sma-sunny-home-manager-2-0--energy-meter-grid-meter-pv-meter-battery-meter)
 - [SolarEdge Energy Meter via inverter (Grid Meter)](#meter-solaredge-energy-meter-via-inverter-grid-meter)
 - [SolarEdge Hybrid Inverter (PV Meter)](#meter-solaredge-hybrid-inverter-pv-meter)
 - [SolarEdge StorEdge (Battery Meter)](#meter-solaredge-storedge-battery-meter)
@@ -653,8 +653,8 @@ If you want to contribute configurations to this repository please open a Pull R
     jq: .current
 ```
 
-<a id="meter-sma-speedwire-inverter-pv-or-battery-meter"></a>
-#### SMA Speedwire Inverter (PV or Battery Meter)
+<a id="meter-sma-speedwire-inverter-pv-meter-battery-meter"></a>
+#### SMA Speedwire Inverter (PV Meter, Battery Meter)
 
 ```yaml
 - type: sma
@@ -662,8 +662,8 @@ If you want to contribute configurations to this repository please open a Pull R
   password: # optional
 ```
 
-<a id="meter-sma-sunny-home-manager-2-0--energy-meter-grid-pv-or-battery-meter"></a>
-#### SMA Sunny Home Manager 2.0 / Energy Meter (Grid, PV or Battery Meter)
+<a id="meter-sma-sunny-home-manager-2-0--energy-meter-grid-meter-pv-meter-battery-meter"></a>
+#### SMA Sunny Home Manager 2.0 / Energy Meter (Grid Meter, PV Meter, Battery Meter)
 
 ```yaml
 - type: sma
