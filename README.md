@@ -46,7 +46,10 @@ If you want to contribute configurations to this repository please open a Pull R
 - [E3DC (Battery Meter)](#meter-e3dc-battery-meter)
 - [E3DC (Grid Meter)](#meter-e3dc-grid-meter)
 - [E3DC (PV Meter)](#meter-e3dc-pv-meter)
-- [Eastron SDM Modbus Meter](#meter-eastron-sdm-modbus-meter)
+- [Eastron SDM Modbus Meter via serial port (Charge Meter)](#meter-eastron-sdm-modbus-meter-via-serial-port-charge-meter)
+- [Eastron SDM Modbus Meter via serial port (Grid Meter, PV Meter)](#meter-eastron-sdm-modbus-meter-via-serial-port-grid-meter-pv-meter)
+- [Eastron SDM Modbus Meter via TCP (Charge Meter)](#meter-eastron-sdm-modbus-meter-via-tcp-charge-meter)
+- [Eastron SDM Modbus Meter via TCP (Grid Meter, PV Meter)](#meter-eastron-sdm-modbus-meter-via-tcp-grid-meter-pv-meter)
 - [Fronius Solar API V1 (Battery Meter)](#meter-fronius-solar-api-v1-battery-meter)
 - [Fronius Solar API V1 (Grid Meter)](#meter-fronius-solar-api-v1-grid-meter)
 - [Fronius Solar API V1 (PV Meter)](#meter-fronius-solar-api-v1-pv-meter)
@@ -65,7 +68,6 @@ If you want to contribute configurations to this repository please open a Pull R
 - [LG ESS HOME 8/10 (PV Meter)](#meter-lg-ess-home-8-10-pv-meter)
 - [Multiple DC MPP strings combined (PV Meter)](#meter-multiple-dc-mpp-strings-combined-pv-meter)
 - [Multiple PV inverters combined (PV Meter)](#meter-multiple-pv-inverters-combined-pv-meter)
-- [Multiple SMA Speedwire PV inverters combined (PV Meter)](#meter-multiple-sma-speedwire-pv-inverters-combined-pv-meter)
 - [PowerDog (Grid Meter)](#meter-powerdog-grid-meter)
 - [PowerDog (PV Meter)](#meter-powerdog-pv-meter)
 - [Powerfox Poweropti (Grid Meter, PV Meter)](#meter-powerfox-poweropti-grid-meter-pv-meter)
@@ -75,7 +77,8 @@ If you want to contribute configurations to this repository please open a Pull R
 - [SENEC.Home (Battery Meter)](#meter-senec-home-battery-meter)
 - [SENEC.Home (Grid Meter)](#meter-senec-home-grid-meter)
 - [SENEC.Home (PV Meter)](#meter-senec-home-pv-meter)
-- [Shelly 3EM (HTTP)](#meter-shelly-3em-http)
+- [Shelly 3EM (Grid Meter, PV Meter)](#meter-shelly-3em-grid-meter-pv-meter)
+- [SMA Multiple Speedwire PV inverters combined (PV Meter)](#meter-sma-multiple-speedwire-pv-inverters-combined-pv-meter)
 - [SMA Speedwire Inverter (PV Meter, Battery Meter)](#meter-sma-speedwire-inverter-pv-meter-battery-meter)
 - [SMA Sunny Home Manager 2.0 / Energy Meter (Grid Meter, PV Meter, Battery Meter)](#meter-sma-sunny-home-manager-2-0--energy-meter-grid-meter-pv-meter-battery-meter)
 - [SolarEdge Energy Meter via inverter (Grid Meter)](#meter-solaredge-energy-meter-via-inverter-grid-meter)
@@ -92,13 +95,14 @@ If you want to contribute configurations to this repository please open a Pull R
 - [SunSpec compliant 3-phase meter via inverter (Grid Meter)](#meter-sunspec-compliant-3-phase-meter-via-inverter-grid-meter)
 - [SunSpec compliant battery inverter (Battery Meter)](#meter-sunspec-compliant-battery-inverter-battery-meter)
 - [SunSpec compliant PV inverter (PV Meter)](#meter-sunspec-compliant-pv-inverter-pv-meter)
-- [Tasmota (HTTP)](#meter-tasmota-http)
+- [Tasmota (Charge Meter)](#meter-tasmota-charge-meter)
+- [Tasmota (Grid Meter, PV Meter)](#meter-tasmota-grid-meter-pv-meter)
 - [Tesla Powerwall (Battery Meter)](#meter-tesla-powerwall-battery-meter)
 - [Tesla Powerwall (Grid Meter)](#meter-tesla-powerwall-grid-meter)
 - [Tesla Powerwall (PV Meter)](#meter-tesla-powerwall-pv-meter)
-- [vzlogger (HTTP)](#meter-vzlogger-http)
-- [vzlogger (Push Server)](#meter-vzlogger-push-server)
-- [vzlogger (split import/export channels)](#meter-vzlogger-split-import-export-channels)
+- [vzlogger (Grid Meter, PV Meter)](#meter-vzlogger-grid-meter-pv-meter)
+- [vzlogger via Push Server (Grid meter, PV Meter)](#meter-vzlogger-via-push-server-grid-meter-pv-meter)
+- [vzlogger with split import/export channels (Grid Meter, PV Meter)](#meter-vzlogger-with-split-import-export-channels-grid-meter-pv-meter)
 
 ## Vehicles
 
@@ -190,8 +194,8 @@ If you want to contribute configurations to this repository please open a Pull R
       decode: int32s
 ```
 
-<a id="meter-eastron-sdm-modbus-meter"></a>
-#### Eastron SDM Modbus Meter
+<a id="meter-eastron-sdm-modbus-meter-via-serial-port-charge-meter"></a>
+#### Eastron SDM Modbus Meter via serial port (Charge Meter)
 
 ```yaml
 - type: modbus
@@ -202,7 +206,40 @@ If you want to contribute configurations to this repository please open a Pull R
   device: /dev/ttyUSB0 # serial port
   baudrate: 9600
   comset: 8N1
-  # or via TCP:
+```
+
+<a id="meter-eastron-sdm-modbus-meter-via-serial-port-grid-meter-pv-meter"></a>
+#### Eastron SDM Modbus Meter via serial port (Grid Meter, PV Meter)
+
+```yaml
+- type: modbus
+  model: sdm # specific non-sunspec meter
+  id: 1
+  # chose either locally attached:
+  device: /dev/ttyUSB0 # serial port
+  baudrate: 9600
+  comset: 8N1
+```
+
+<a id="meter-eastron-sdm-modbus-meter-via-tcp-charge-meter"></a>
+#### Eastron SDM Modbus Meter via TCP (Charge Meter)
+
+```yaml
+- type: modbus
+  model: sdm # specific non-sunspec meter
+  id: 1
+  energy: Sum # only required for charge meter usage
+  uri: 192.0.2.2:502
+  rtu: true # serial modbus rtu (rs485) device connected using simple ethernet adapter
+```
+
+<a id="meter-eastron-sdm-modbus-meter-via-tcp-grid-meter-pv-meter"></a>
+#### Eastron SDM Modbus Meter via TCP (Grid Meter, PV Meter)
+
+```yaml
+- type: modbus
+  model: sdm # specific non-sunspec meter
+  id: 1
   uri: 192.0.2.2:502
   rtu: true # serial modbus rtu (rs485) device connected using simple ethernet adapter
 ```
@@ -474,24 +511,6 @@ If you want to contribute configurations to this repository please open a Pull R
       id: 1
 ```
 
-<a id="meter-multiple-sma-speedwire-pv-inverters-combined-pv-meter"></a>
-#### Multiple SMA Speedwire PV inverters combined (PV Meter)
-
-```yaml
-- type: custom
-  power:
-    source: calc
-    add:
-    - source: sma
-      uri: 192.0.2.2
-      password: # optional
-      value: ActivePowerPlus
-    - source: sma
-      uri: 192.0.2.3
-      password: # optional
-      value: ActivePowerPlus
-```
-
 <a id="meter-powerdog-grid-meter"></a>
 #### PowerDog (Grid Meter)
 
@@ -627,8 +646,8 @@ If you want to contribute configurations to this repository please open a Pull R
     timeout: 5s
 ```
 
-<a id="meter-shelly-3em-http"></a>
-#### Shelly 3EM (HTTP)
+<a id="meter-shelly-3em-grid-meter-pv-meter"></a>
+#### Shelly 3EM (Grid Meter, PV Meter)
 
 ```yaml
 - type: custom
@@ -651,6 +670,24 @@ If you want to contribute configurations to this repository please open a Pull R
   - source: http
     uri: http://192.0.2.2/emeter/2
     jq: .current
+```
+
+<a id="meter-sma-multiple-speedwire-pv-inverters-combined-pv-meter"></a>
+#### SMA Multiple Speedwire PV inverters combined (PV Meter)
+
+```yaml
+- type: custom
+  power:
+    source: calc
+    add:
+    - source: sma
+      uri: 192.0.2.2
+      password: # optional
+      value: ActivePowerPlus
+    - source: sma
+      uri: 192.0.2.3
+      password: # optional
+      value: ActivePowerPlus
 ```
 
 <a id="meter-sma-speedwire-inverter-pv-meter-battery-meter"></a>
@@ -868,8 +905,8 @@ If you want to contribute configurations to this repository please open a Pull R
   id: 1
 ```
 
-<a id="meter-tasmota-http"></a>
-#### Tasmota (HTTP)
+<a id="meter-tasmota-charge-meter"></a>
+#### Tasmota (Charge Meter)
 
 ```yaml
 - type: custom
@@ -881,6 +918,17 @@ If you want to contribute configurations to this repository please open a Pull R
     source: http
     uri: http://192.0.2.2/cm?cmnd=Status%208
     jq: .StatusSNS.ENERGY.Total * 1000
+```
+
+<a id="meter-tasmota-grid-meter-pv-meter"></a>
+#### Tasmota (Grid Meter, PV Meter)
+
+```yaml
+- type: custom
+  power: # power reading (W)
+    source: http
+    uri: http://192.0.2.2/cm?cmnd=Status%208
+    jq: .StatusSNS.ENERGY.Power
 ```
 
 <a id="meter-tesla-powerwall-battery-meter"></a>
@@ -910,8 +958,8 @@ If you want to contribute configurations to this repository please open a Pull R
   usage: pv
 ```
 
-<a id="meter-vzlogger-http"></a>
-#### vzlogger (HTTP)
+<a id="meter-vzlogger-grid-meter-pv-meter"></a>
+#### vzlogger (Grid Meter, PV Meter)
 
 ```yaml
 - type: custom
@@ -921,8 +969,8 @@ If you want to contribute configurations to this repository please open a Pull R
     jq: .data.tuples[0][1] # parse response json
 ```
 
-<a id="meter-vzlogger-push-server"></a>
-#### vzlogger (Push Server)
+<a id="meter-vzlogger-via-push-server-grid-meter-pv-meter"></a>
+#### vzlogger via Push Server (Grid meter, PV Meter)
 
 ```yaml
 - type: custom
@@ -934,8 +982,8 @@ If you want to contribute configurations to this repository please open a Pull R
     scale: 1
 ```
 
-<a id="meter-vzlogger-split-import-export-channels"></a>
-#### vzlogger (split import/export channels)
+<a id="meter-vzlogger-with-split-import-export-channels-grid-meter-pv-meter"></a>
+#### vzlogger with split import/export channels (Grid Meter, PV Meter)
 
 ```yaml
 - type: custom

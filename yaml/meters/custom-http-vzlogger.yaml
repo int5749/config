@@ -1,5 +1,5 @@
 type: custom
-name: vzlogger (HTTP)
+name: vzlogger (Grid Meter, PV Meter)
 sample: |
   power: # power reading
     source: http # use http plugin

@@ -1,5 +1,5 @@
 type: custom
-name: vzlogger (split import/export channels)
+name: vzlogger with split import/export channels (Grid Meter, PV Meter)
 sample: |
   power:
     source: calc # use calc plugin

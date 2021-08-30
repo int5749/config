@@ -1,5 +1,5 @@
 type: custom
-name: Shelly 3EM (HTTP)
+name: Shelly 3EM (Grid Meter, PV Meter)
 sample: |
   power:
     source: http

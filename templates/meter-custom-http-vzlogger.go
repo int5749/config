@@ -8,7 +8,7 @@ func init() {
 	template := registry.Template{
 		Class:  "meter",
 		Type:   "custom",
-		Name:   "vzlogger (HTTP)",
+		Name:   "vzlogger (Grid Meter, PV Meter)",
 		Sample: `power: # power reading
   source: http # use http plugin
   uri: http://192.0.2.2/api/data/<uuid>.json?from=now

@@ -8,7 +8,7 @@ func init() {
 	template := registry.Template{
 		Class:  "meter",
 		Type:   "custom",
-		Name:   "vzlogger (split import/export channels)",
+		Name:   "vzlogger with split import/export channels (Grid Meter, PV Meter)",
 		Sample: `power:
   source: calc # use calc plugin
   add:

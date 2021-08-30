@@ -1,0 +1,10 @@
+type: modbus
+name: Eastron SDM Modbus Meter via serial port (Charge Meter)
+sample: |
+  model: sdm # specific non-sunspec meter
+  id: 1
+  energy: Sum # only required for charge meter usage
+  # chose either locally attached:
+  device: /dev/ttyUSB0 # serial port
+  baudrate: 9600
+  comset: 8N1

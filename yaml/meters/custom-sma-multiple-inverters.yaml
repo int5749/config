@@ -1,5 +1,5 @@
 type: custom
-name: Multiple SMA Speedwire PV inverters combined (PV Meter)
+name: SMA Multiple Speedwire PV inverters combined (PV Meter)
 sample: |
   power:
     source: calc
