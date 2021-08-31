@@ -1,5 +1,5 @@
 type: custom
-name: Multiple PV inverters combined (PV Meter)
+name: Multiple Sunspec Modbus-TCP PV inverters combined (PV Meter)
 sample: |
   power:
     source: calc

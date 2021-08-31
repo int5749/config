@@ -8,7 +8,7 @@ func init() {
 	template := registry.Template{
 		Class:  "meter",
 		Type:   "custom",
-		Name:   "Multiple DC MPP strings combined (PV Meter)",
+		Name:   "Multiple DC MPP strings of a Sunspec Modbus-TCP inverter combined (PV Meter)",
 		Sample: `power:
   source: calc
   add:

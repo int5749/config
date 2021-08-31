@@ -8,7 +8,7 @@ func init() {
 	template := registry.Template{
 		Class:  "meter",
 		Type:   "modbus",
-		Name:   "Eastron SDM Modbus Meter via TCP (Grid Meter, PV Meter)",
+		Name:   "Eastron SDM Modbus Meter (Modbus-TCP) (Grid Meter, PV Meter)",
 		Sample: `model: sdm # specific non-sunspec meter
 id: 1
 uri: 192.0.2.2:502

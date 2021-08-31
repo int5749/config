@@ -18,7 +18,8 @@ If you want to contribute configurations to this repository please open a Pull R
 
 - [Easee Home (Cloud API)](#charger-easee-home-cloud-api)
 - [EEBUS compatible wallbox (e.g. Mobile Charger Connect)](#charger-eebus-compatible-wallbox-e-g-mobile-charger-connect)
-- [EVSE DIN](#charger-evse-din)
+- [EVSE DIN (Modbus-TCP)](#charger-evse-din-modbus-tcp)
+- [EVSE DIN (Serial port)](#charger-evse-din-serial-port)
 - [EVSE-Wifi](#charger-evse-wifi)
 - [FritzDECT](#charger-fritzdect)
 - [Generic](#charger-generic)
@@ -32,7 +33,7 @@ If you want to contribute configurations to this repository please open a Pull R
 - [NRGKick Connect](#charger-nrgkick-connect)
 - [openWB (MQTT)](#charger-openwb-mqtt)
 - [Phoenix EM-CP-PP-ETH Controller (Modbus TCP)](#charger-phoenix-em-cp-pp-eth-controller-modbus-tcp)
-- [Phoenix EV-ETH Controller (Modbus TCP)](#charger-phoenix-ev-eth-controller-modbus-tcp)
+- [Phoenix EV-ETH Controller (Modbus-TCP)](#charger-phoenix-ev-eth-controller-modbus-tcp)
 - [Phoenix EV-SER Controller (Modbus RTU)](#charger-phoenix-ev-ser-controller-modbus-rtu)
 - [Shelly](#charger-shelly)
 - [Tasmota](#charger-tasmota)
@@ -46,10 +47,10 @@ If you want to contribute configurations to this repository please open a Pull R
 - [E3DC (Battery Meter)](#meter-e3dc-battery-meter)
 - [E3DC (Grid Meter)](#meter-e3dc-grid-meter)
 - [E3DC (PV Meter)](#meter-e3dc-pv-meter)
+- [Eastron SDM Modbus Meter (Modbus-TCP) (Grid Meter, PV Meter)](#meter-eastron-sdm-modbus-meter-modbus-tcp--grid-meter-pv-meter)
+- [Eastron SDM Modbus Meter (Serial port) (Grid Meter, PV Meter)](#meter-eastron-sdm-modbus-meter-serial-port--grid-meter-pv-meter)
 - [Eastron SDM Modbus Meter via serial port (Charge Meter)](#meter-eastron-sdm-modbus-meter-via-serial-port-charge-meter)
-- [Eastron SDM Modbus Meter via serial port (Grid Meter, PV Meter)](#meter-eastron-sdm-modbus-meter-via-serial-port-grid-meter-pv-meter)
 - [Eastron SDM Modbus Meter via TCP (Charge Meter)](#meter-eastron-sdm-modbus-meter-via-tcp-charge-meter)
-- [Eastron SDM Modbus Meter via TCP (Grid Meter, PV Meter)](#meter-eastron-sdm-modbus-meter-via-tcp-grid-meter-pv-meter)
 - [Fronius Solar API V1 (Battery Meter)](#meter-fronius-solar-api-v1-battery-meter)
 - [Fronius Solar API V1 (Grid Meter)](#meter-fronius-solar-api-v1-grid-meter)
 - [Fronius Solar API V1 (PV Meter)](#meter-fronius-solar-api-v1-pv-meter)
@@ -66,8 +67,9 @@ If you want to contribute configurations to this repository please open a Pull R
 - [LG ESS HOME 8/10 (Battery Meter)](#meter-lg-ess-home-8-10-battery-meter)
 - [LG ESS HOME 8/10 (Grid Meter)](#meter-lg-ess-home-8-10-grid-meter)
 - [LG ESS HOME 8/10 (PV Meter)](#meter-lg-ess-home-8-10-pv-meter)
-- [Multiple DC MPP strings combined (PV Meter)](#meter-multiple-dc-mpp-strings-combined-pv-meter)
-- [Multiple PV inverters combined (PV Meter)](#meter-multiple-pv-inverters-combined-pv-meter)
+- [Multiple DC MPP strings of a Sunspec Modbus-TCP inverter combined (PV Meter)](#meter-multiple-dc-mpp-strings-of-a-sunspec-modbus-tcp-inverter-combined-pv-meter)
+- [Multiple SMA Speedwire PV inverters combined (PV Meter)](#meter-multiple-sma-speedwire-pv-inverters-combined-pv-meter)
+- [Multiple Sunspec Modbus-TCP PV inverters combined (PV Meter)](#meter-multiple-sunspec-modbus-tcp-pv-inverters-combined-pv-meter)
 - [PowerDog (Grid Meter)](#meter-powerdog-grid-meter)
 - [PowerDog (PV Meter)](#meter-powerdog-pv-meter)
 - [Powerfox Poweropti (Grid Meter, PV Meter)](#meter-powerfox-poweropti-grid-meter-pv-meter)
@@ -78,7 +80,6 @@ If you want to contribute configurations to this repository please open a Pull R
 - [SENEC.Home (Grid Meter)](#meter-senec-home-grid-meter)
 - [SENEC.Home (PV Meter)](#meter-senec-home-pv-meter)
 - [Shelly 3EM (Grid Meter, PV Meter)](#meter-shelly-3em-grid-meter-pv-meter)
-- [SMA Multiple Speedwire PV inverters combined (PV Meter)](#meter-sma-multiple-speedwire-pv-inverters-combined-pv-meter)
 - [SMA Speedwire Inverter (PV Meter, Battery Meter)](#meter-sma-speedwire-inverter-pv-meter-battery-meter)
 - [SMA Sunny Home Manager 2.0 / Energy Meter (Grid Meter, PV Meter, Battery Meter)](#meter-sma-sunny-home-manager-2-0--energy-meter-grid-meter-pv-meter-battery-meter)
 - [SolarEdge Energy Meter via inverter (Grid Meter)](#meter-solaredge-energy-meter-via-inverter-grid-meter)
@@ -194,6 +195,30 @@ If you want to contribute configurations to this repository please open a Pull R
       decode: int32s
 ```
 
+<a id="meter-eastron-sdm-modbus-meter-modbus-tcp--grid-meter-pv-meter"></a>
+#### Eastron SDM Modbus Meter (Modbus-TCP) (Grid Meter, PV Meter)
+
+```yaml
+- type: modbus
+  model: sdm # specific non-sunspec meter
+  id: 1
+  uri: 192.0.2.2:502
+  rtu: true # serial modbus rtu (rs485) device connected using simple ethernet adapter
+```
+
+<a id="meter-eastron-sdm-modbus-meter-serial-port--grid-meter-pv-meter"></a>
+#### Eastron SDM Modbus Meter (Serial port) (Grid Meter, PV Meter)
+
+```yaml
+- type: modbus
+  model: sdm # specific non-sunspec meter
+  id: 1
+  # chose either locally attached:
+  device: /dev/ttyUSB0 # serial port
+  baudrate: 9600
+  comset: 8N1
+```
+
 <a id="meter-eastron-sdm-modbus-meter-via-serial-port-charge-meter"></a>
 #### Eastron SDM Modbus Meter via serial port (Charge Meter)
 
@@ -208,19 +233,6 @@ If you want to contribute configurations to this repository please open a Pull R
   comset: 8N1
 ```
 
-<a id="meter-eastron-sdm-modbus-meter-via-serial-port-grid-meter-pv-meter"></a>
-#### Eastron SDM Modbus Meter via serial port (Grid Meter, PV Meter)
-
-```yaml
-- type: modbus
-  model: sdm # specific non-sunspec meter
-  id: 1
-  # chose either locally attached:
-  device: /dev/ttyUSB0 # serial port
-  baudrate: 9600
-  comset: 8N1
-```
-
 <a id="meter-eastron-sdm-modbus-meter-via-tcp-charge-meter"></a>
 #### Eastron SDM Modbus Meter via TCP (Charge Meter)
 
@@ -229,17 +241,6 @@ If you want to contribute configurations to this repository please open a Pull R
   model: sdm # specific non-sunspec meter
   id: 1
   energy: Sum # only required for charge meter usage
-  uri: 192.0.2.2:502
-  rtu: true # serial modbus rtu (rs485) device connected using simple ethernet adapter
-```
-
-<a id="meter-eastron-sdm-modbus-meter-via-tcp-grid-meter-pv-meter"></a>
-#### Eastron SDM Modbus Meter via TCP (Grid Meter, PV Meter)
-
-```yaml
-- type: modbus
-  model: sdm # specific non-sunspec meter
-  id: 1
   uri: 192.0.2.2:502
   rtu: true # serial modbus rtu (rs485) device connected using simple ethernet adapter
 ```
@@ -473,8 +474,8 @@ If you want to contribute configurations to this repository please open a Pull R
   password: "DE200..." # registration number of the LG ESS HOME inverter
 ```
 
-<a id="meter-multiple-dc-mpp-strings-combined-pv-meter"></a>
-#### Multiple DC MPP strings combined (PV Meter)
+<a id="meter-multiple-dc-mpp-strings-of-a-sunspec-modbus-tcp-inverter-combined-pv-meter"></a>
+#### Multiple DC MPP strings of a Sunspec Modbus-TCP inverter combined (PV Meter)
 
 ```yaml
 - type: custom
@@ -493,8 +494,26 @@ If you want to contribute configurations to this repository please open a Pull R
       id: 1
 ```
 
-<a id="meter-multiple-pv-inverters-combined-pv-meter"></a>
-#### Multiple PV inverters combined (PV Meter)
+<a id="meter-multiple-sma-speedwire-pv-inverters-combined-pv-meter"></a>
+#### Multiple SMA Speedwire PV inverters combined (PV Meter)
+
+```yaml
+- type: custom
+  power:
+    source: calc
+    add:
+    - source: sma
+      uri: 192.0.2.2
+      password: # optional
+      value: ActivePowerPlus
+    - source: sma
+      uri: 192.0.2.3
+      password: # optional
+      value: ActivePowerPlus
+```
+
+<a id="meter-multiple-sunspec-modbus-tcp-pv-inverters-combined-pv-meter"></a>
+#### Multiple Sunspec Modbus-TCP PV inverters combined (PV Meter)
 
 ```yaml
 - type: custom
@@ -670,24 +689,6 @@ If you want to contribute configurations to this repository please open a Pull R
   - source: http
     uri: http://192.0.2.2/emeter/2
     jq: .current
-```
-
-<a id="meter-sma-multiple-speedwire-pv-inverters-combined-pv-meter"></a>
-#### SMA Multiple Speedwire PV inverters combined (PV Meter)
-
-```yaml
-- type: custom
-  power:
-    source: calc
-    add:
-    - source: sma
-      uri: 192.0.2.2
-      password: # optional
-      value: ActivePowerPlus
-    - source: sma
-      uri: 192.0.2.3
-      password: # optional
-      value: ActivePowerPlus
 ```
 
 <a id="meter-sma-speedwire-inverter-pv-meter-battery-meter"></a>
@@ -1023,16 +1024,22 @@ If you want to contribute configurations to this repository please open a Pull R
   forcePVLimits: true # use Overload Protection to limit PV charging, if false PV surplus is sent as recommended charging levels to the EV, but this is currently unreliable
 ```
 
-<a id="charger-evse-din"></a>
-#### EVSE DIN
+<a id="charger-evse-din-modbus-tcp"></a>
+#### EVSE DIN (Modbus-TCP)
 
 ```yaml
 - type: simpleevse
   # http://evracing.cz/simple-evse-wallbox
-  # either locally attached:
-  device: /dev/ttyUSB0 # serial RS485 interface
-  # or via TCP:
   uri: 192.0.2.2:502 # Modbus TCP converter address
+```
+
+<a id="charger-evse-din-serial-port"></a>
+#### EVSE DIN (Serial port)
+
+```yaml
+- type: simpleevse
+  # http://evracing.cz/simple-evse-wallbox
+  device: /dev/ttyUSB0 # serial RS485 interface
 ```
 
 <a id="charger-evse-wifi"></a>
@@ -1205,7 +1212,7 @@ If you want to contribute configurations to this repository please open a Pull R
 ```
 
 <a id="charger-phoenix-ev-eth-controller-modbus-tcp"></a>
-#### Phoenix EV-ETH Controller (Modbus TCP)
+#### Phoenix EV-ETH Controller (Modbus-TCP)
 
 ```yaml
 - type: phoenix-ev-eth

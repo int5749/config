@@ -8,7 +8,7 @@ func init() {
 	template := registry.Template{
 		Class:  "meter",
 		Type:   "custom",
-		Name:   "SMA Multiple Speedwire PV inverters combined (PV Meter)",
+		Name:   "Multiple SMA Speedwire PV inverters combined (PV Meter)",
 		Sample: `power:
   source: calc
   add:

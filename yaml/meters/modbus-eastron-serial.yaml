@@ -1,5 +1,5 @@
 type: modbus
-name: Eastron SDM Modbus Meter via serial port (Grid Meter, PV Meter)
+name: Eastron SDM Modbus Meter (Serial port) (Grid Meter, PV Meter)
 sample: |
   model: sdm # specific non-sunspec meter
   id: 1

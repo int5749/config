@@ -1,5 +1,5 @@
 type: custom
-name: Multiple DC MPP strings combined (PV Meter)
+name: Multiple DC MPP strings of a Sunspec Modbus-TCP inverter combined (PV Meter)
 sample: |
   power:
     source: calc
