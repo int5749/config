@@ -1,5 +1,5 @@
 type: fiat
-name: Fiat (Neuer 500)
+name: Fiat (500e, Neuer 500, etc)
 sample: |
   title: Neuer 500 # display name for UI
   capacity: 42 # kWh

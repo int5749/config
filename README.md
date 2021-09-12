@@ -107,7 +107,7 @@ If you want to contribute configurations to this repository please open a Pull R
 - [BMW (i3)](#vehicle-bmw-i3)
 - [Citroen](#vehicle-citroen)
 - [evNotify (HTTP)](#vehicle-evnotify-http)
-- [Fiat (Neuer 500)](#vehicle-fiat-neuer-500)
+- [Fiat (500e, Neuer 500, etc)](#vehicle-fiat-500e-neuer-500-etc)
 - [Ford (Kuga, Mustang, etc)](#vehicle-ford-kuga-mustang-etc)
 - [Generic](#vehicle-generic)
 - [Hyundai (Kona, Ioniq)](#vehicle-hyundai-kona-ioniq)
@@ -1313,8 +1313,8 @@ If you want to contribute configurations to this repository please open a Pull R
   cache: 5m # cache duration
 ```
 
-<a id="vehicle-fiat-neuer-500"></a>
-#### Fiat (Neuer 500)
+<a id="vehicle-fiat-500e-neuer-500-etc"></a>
+#### Fiat (500e, Neuer 500, etc)
 
 ```yaml
 - type: fiat
