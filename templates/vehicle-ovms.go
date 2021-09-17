@@ -8,7 +8,7 @@ func init() {
 	template := registry.Template{
 		Class:  "vehicle",
 		Type:   "ovms",
-		Name:   "OVMS (f.i. Twizzy, Smart ED)",
+		Name:   "OVMS",
 		Sample: `title: Open Vehicle Monitoring System # display name for UI
 capacity: 12 # kWh
 user: # user server
