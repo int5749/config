@@ -1,5 +1,5 @@
 type: porsche
-name: Porsche (Taycan, Cayenne E-Hybrid)
+name: Porsche
 sample: |
   title: Taycan # display name for UI
   capacity: 83 # kWh

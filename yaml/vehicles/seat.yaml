@@ -1,8 +1,0 @@
-type: seat
-name: SEAT (Cupra, Mii, etc)
-sample: |
-  title: Cupra # display name for UI
-  capacity: 10 # kWh
-  user: # user
-  password: # password
-  vin: WVWZZZ... # optional

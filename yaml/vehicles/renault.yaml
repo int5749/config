@@ -1,5 +1,5 @@
 type: renault
-name: Renault (all ZE models like Zoe, Twingo Electric, Master, Kangoo)
+name: Renault
 sample: |
   title: Zoe # display name for UI
   capacity: 60 # kWh
