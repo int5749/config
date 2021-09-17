@@ -1,5 +1,5 @@
 type: ovms
-name: OVMS
+name: OVMS (f.i. Twizzy, Smart ED)
 sample: |
   title: Open Vehicle Monitoring System # display name for UI
   capacity: 12 # kWh

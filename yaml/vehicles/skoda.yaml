@@ -1,0 +1,8 @@
+type: enyaq
+name: SKODA (Enyaq)
+sample: |
+  title: Enyaq # display name for UI
+  capacity: 10 # kWh
+  user: # user
+  password: # password
+  vin: WVWZZZ... # optional
