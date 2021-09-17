@@ -103,8 +103,8 @@ If you want to contribute configurations to this repository please open a Pull R
 
 ## Vehicles
 
-- [Audi (eTron etc)](#vehicle-audi-etron-etc)
-- [BMW (i3)](#vehicle-bmw-i3)
+- [Audi (eTron, Q55, etc)](#vehicle-audi-etron-q55-etc)
+- [BMW and Mini (i3, Cooper SE)](#vehicle-bmw-and-mini-i3-cooper-se)
 - [Citroen](#vehicle-citroen)
 - [evNotify (HTTP)](#vehicle-evnotify-http)
 - [Fiat (500e, Neuer 500, etc)](#vehicle-fiat-500e-neuer-500-etc)
@@ -115,11 +115,14 @@ If you want to contribute configurations to this repository please open a Pull R
 - [Nissan (Leaf)](#vehicle-nissan-leaf)
 - [NIU E-Scooter](#vehicle-niu-e-scooter)
 - [Opel](#vehicle-opel)
-- [OVMS](#vehicle-ovms)
+- [OVMS (f.i. Twizzy, Smart ED)](#vehicle-ovms-f-i-twizzy-smart-ed)
 - [Peugeot](#vehicle-peugeot)
-- [Porsche](#vehicle-porsche)
-- [Renault (Zoe)](#vehicle-renault-zoe)
+- [Porsche (Taycan, Cayenne E-Hybrid)](#vehicle-porsche-taycan-cayenne-e-hybrid)
+- [Renault (all ZE models like Zoe, Twingo Electric, Master, Kangoo)](#vehicle-renault-all-ze-models-like-zoe-twingo-electric-master-kangoo)
+- [SEAT (Cupra, Mii, etc)](#vehicle-seat-cupra-mii-etc)
+- [SKODA (Enyaq)](#vehicle-skoda-enyaq)
 - [Tesla](#vehicle-tesla)
+- [VW (e-Up, e-Golf, etc)](#vehicle-vw-e-up-e-golf-etc)
 - [VW (e-Up, e-Golf, etc)](#vehicle-vw-e-up-e-golf-etc)
 - [VW ID (ID.3, ID.4, but also e-Golf, e-Up)](#vehicle-vw-id-id-3-id-4-but-also-e-golf-e-up)
 
@@ -1262,8 +1265,8 @@ If you want to contribute configurations to this repository please open a Pull R
 ### Vehicles
 
 
-<a id="vehicle-audi-etron-etc"></a>
-#### Audi (eTron etc)
+<a id="vehicle-audi-etron-q55-etc"></a>
+#### Audi (eTron, Q55, etc)
 
 ```yaml
 - type: audi
@@ -1274,8 +1277,8 @@ If you want to contribute configurations to this repository please open a Pull R
   vin: WAUZZZ... # optional
 ```
 
-<a id="vehicle-bmw-i3"></a>
-#### BMW (i3)
+<a id="vehicle-bmw-and-mini-i3-cooper-se"></a>
+#### BMW and Mini (i3, Cooper SE)
 
 ```yaml
 - type: bmw
@@ -1414,8 +1417,8 @@ If you want to contribute configurations to this repository please open a Pull R
   vin: # optional
 ```
 
-<a id="vehicle-ovms"></a>
-#### OVMS
+<a id="vehicle-ovms-f-i-twizzy-smart-ed"></a>
+#### OVMS (f.i. Twizzy, Smart ED)
 
 ```yaml
 - type: ovms
@@ -1439,8 +1442,8 @@ If you want to contribute configurations to this repository please open a Pull R
   vin: # optional
 ```
 
-<a id="vehicle-porsche"></a>
-#### Porsche
+<a id="vehicle-porsche-taycan-cayenne-e-hybrid"></a>
+#### Porsche (Taycan, Cayenne E-Hybrid)
 
 ```yaml
 - type: porsche
@@ -1451,8 +1454,8 @@ If you want to contribute configurations to this repository please open a Pull R
   vin: WP...
 ```
 
-<a id="vehicle-renault-zoe"></a>
-#### Renault (Zoe)
+<a id="vehicle-renault-all-ze-models-like-zoe-twingo-electric-master-kangoo"></a>
+#### Renault (all ZE models like Zoe, Twingo Electric, Master, Kangoo)
 
 ```yaml
 - type: renault
@@ -1461,6 +1464,30 @@ If you want to contribute configurations to this repository please open a Pull R
   user: # user
   password: # password
   vin: WREN... # optional
+```
+
+<a id="vehicle-seat-cupra-mii-etc"></a>
+#### SEAT (Cupra, Mii, etc)
+
+```yaml
+- type: seat
+  title: Cupra # display name for UI
+  capacity: 10 # kWh
+  user: # user
+  password: # password
+  vin: WVWZZZ... # optional
+```
+
+<a id="vehicle-skoda-enyaq"></a>
+#### SKODA (Enyaq)
+
+```yaml
+- type: enyaq
+  title: Enyaq # display name for UI
+  capacity: 10 # kWh
+  user: # user
+  password: # password
+  vin: WVWZZZ... # optional
 ```
 
 <a id="vehicle-tesla"></a>
@@ -1473,6 +1500,18 @@ If you want to contribute configurations to this repository please open a Pull R
   user: # email
   password: # password
   vin: WTSLA...
+```
+
+<a id="vehicle-vw-e-up-e-golf-etc"></a>
+#### VW (e-Up, e-Golf, etc)
+
+```yaml
+- type: vw
+  title: Golf # display name for UI
+  capacity: 10 # kWh
+  user: # user
+  password: # password
+  vin: WVWZZZ... # optional
 ```
 
 <a id="vehicle-vw-e-up-e-golf-etc"></a>

@@ -7,13 +7,13 @@ import (
 func init() {
 	template := registry.Template{
 		Class:  "vehicle",
-		Type:   "audi",
-		Name:   "Audi (eTron, Q55, etc)",
-		Sample: `title: eTron # display name for UI
-capacity: 14 # kWh
+		Type:   "vw",
+		Name:   "VW (e-Up, e-Golf, etc)",
+		Sample: `title: Golf # display name for UI
+capacity: 10 # kWh
 user: # user
 password: # password
-vin: WAUZZZ... # optional`,
+vin: WVWZZZ... # optional`,
 	}
 
 	registry.Add(template)
