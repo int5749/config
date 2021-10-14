@@ -8,15 +8,16 @@ func init() {
 	template := registry.Template{
 		Class:  "meter",
 		Type:   "custom",
-		Name:   "Solarlog (PV Meter)",
+		Name:   "VARTA Energiespeicher (Grid Meter)",
 		Sample: `power:
   source: modbus
   uri: 192.0.2.2:502
-  id: 1
+  id: 255
   register:
-    address: 3502 # Pac
+    address: 1078 # grid power
     type: input
-    decode: uint32s`,
+    decode: int16
+  scale: -1`,
 	}
 
 	registry.Add(template)

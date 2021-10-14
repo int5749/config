@@ -2,10 +2,10 @@
 
 [![Build Status](https://github.com/evcc-io/config/workflows/Build/badge.svg)](https://github.com/evcc-io/config/actions?query=workflow%3ABuild)
 
-Configuration examples for the [EVCC EV Charge Controller](https://github.com/andig/evcc).
+Configuration examples for the [EVCC EV Charge Controller](https://github.com/evcc-io/evcc).
 
-[EVCC](https://github.com/andig/evcc) supports a growing list of [chargers](#chargers), [meters](#meters) and [vehicles](#vehicles). See below for detailed configuration.
-Additional devices can be configured using `custom` devices and related [plugins](#https://github.com/andig/evcc#plugins).
+[EVCC](https://github.com/evcc-io/evcc) supports a growing list of [chargers](#chargers), [meters](#meters) and [vehicles](#vehicles). See below for detailed configuration.
+Additional devices can be configured using `custom` devices and related [plugins](#https://github.com/evcc-io/evcc#plugins).
 
 ## Contributing
 
@@ -16,6 +16,7 @@ If you want to contribute configurations to this repository please open a Pull R
 
 ## Chargers
 
+- [ABL eMH / SENEC.Wallbox pro](#charger-abl-emh--senec-wallbox-pro)
 - [Easee Home (Cloud API)](#charger-easee-home-cloud-api)
 - [EEBUS compatible wallbox (e.g. Mobile Charger Connect)](#charger-eebus-compatible-wallbox-e-g-mobile-charger-connect)
 - [EVSE DIN](#charger-evse-din)
@@ -70,9 +71,9 @@ If you want to contribute configurations to this repository please open a Pull R
 - [PowerDog (Grid Meter)](#meter-powerdog-grid-meter)
 - [PowerDog (PV Meter)](#meter-powerdog-pv-meter)
 - [Powerfox Poweropti (Cloud)](#meter-powerfox-poweropti-cloud)
-- [RCT Power Storage (Battery)](#meter-rct-power-storage-battery)
-- [RCT Power Storage (Grid)](#meter-rct-power-storage-grid)
-- [RCT Power Storage (PV)](#meter-rct-power-storage-pv)
+- [RCT Power (Battery Meter)](#meter-rct-power-battery-meter)
+- [RCT Power (Grid Meter)](#meter-rct-power-grid-meter)
+- [RCT Power (PV Meter)](#meter-rct-power-pv-meter)
 - [SENEC.Home (Battery)](#meter-senec-home-battery)
 - [SENEC.Home (Grid)](#meter-senec-home-grid)
 - [SENEC.Home (PV)](#meter-senec-home-pv)
@@ -97,6 +98,9 @@ If you want to contribute configurations to this repository please open a Pull R
 - [Tesla Powerwall (Battery Meter)](#meter-tesla-powerwall-battery-meter)
 - [Tesla Powerwall (Grid Meter)](#meter-tesla-powerwall-grid-meter)
 - [Tesla Powerwall (PV Meter)](#meter-tesla-powerwall-pv-meter)
+- [VARTA Energiespeicher (Battery Meter)](#meter-varta-energiespeicher-battery-meter)
+- [VARTA Energiespeicher (Grid Meter)](#meter-varta-energiespeicher-grid-meter)
+- [VARTA Energiespeicher (PV Meter)](#meter-varta-energiespeicher-pv-meter)
 - [vzlogger (HTTP)](#meter-vzlogger-http)
 - [vzlogger (Push Server)](#meter-vzlogger-push-server)
 - [vzlogger (split import/export channels)](#meter-vzlogger-split-import-export-channels)
@@ -573,41 +577,34 @@ If you want to contribute configurations to this repository please open a Pull R
     jq: .Watt
 ```
 
-<a id="meter-rct-power-storage-battery"></a>
-#### RCT Power Storage (Battery)
+<a id="meter-rct-power-battery-meter"></a>
+#### RCT Power (Battery Meter)
 
 ```yaml
-- type: custom
-  power:
-    source: script
-    cmd: /bin/bash -c "rctclient read-value --host 192.0.2.2 --name g_sync.p_acc_lp"
-    timeout: 5s
-  soc:
-    source: script
-    cmd: /bin/bash -c "echo $(rctclient read-value --host 192.0.2.2 --name battery.soc) \* 100. | bc -l"
-    timeout: 5s
+- type: rct
+  uri: 192.0.2.2
+  usage: battery
+  cache: 2s
 ```
 
-<a id="meter-rct-power-storage-grid"></a>
-#### RCT Power Storage (Grid)
+<a id="meter-rct-power-grid-meter"></a>
+#### RCT Power (Grid Meter)
 
 ```yaml
-- type: custom
-  power:
-    source: script
-    cmd: /bin/bash -c "rctclient read-value --host 192.0.2.2 --name g_sync.p_ac_grid_sum_lp"
-    timeout: 5s
+- type: rct
+  uri: 192.0.2.2
+  usage: grid
+  cache: 2s
 ```
 
-<a id="meter-rct-power-storage-pv"></a>
-#### RCT Power Storage (PV)
+<a id="meter-rct-power-pv-meter"></a>
+#### RCT Power (PV Meter)
 
 ```yaml
-- type: custom
-  power:
-    source: script
-    cmd: /bin/bash -c "echo $(rctclient read-value --host 192.0.2.2 --name g_sync.p_ac_load_sum_lp) \- $(rctclient read-value --host 192.0.2.2 --name g_sync.p_acc_lp) \- $(rctclient read-value --host 192.0.2.2 --name g_sync.p_ac_grid_sum_lp) | bc -l"
-    timeout: 5s
+- type: rct
+  uri: 192.0.2.2
+  usage: pv
+  cache: 2s
 ```
 
 <a id="meter-senec-home-battery"></a>
@@ -762,13 +759,23 @@ If you want to contribute configurations to this repository please open a Pull R
 ```yaml
 - type: custom
   power:
-    source: modbus
-    uri: 192.0.2.2:502 # IP address of the SolarLog device and ModBus port address
-    id: 1
-    register:
-      address: 3518
-      type: input
-      decode: uint32s
+    source: calc
+    add:
+    - source: modbus
+      uri: 192.0.2.2:502
+      id: 1
+      register:
+        address: 3502 # Pac
+        type: input
+        decode: uint32s
+      scale: -1
+    - source: modbus
+      uri: 192.0.2.2:502
+      id: 1
+      register:
+        address: 3518 # Pac consumption
+        type: input
+        decode: uint32s
 ```
 
 <a id="meter-solarlog-pv-meter"></a>
@@ -778,10 +785,10 @@ If you want to contribute configurations to this repository please open a Pull R
 - type: custom
   power:
     source: modbus
-    uri: 192.0.2.2:502 # IP address of the SolarLog  device and ModBus port address
+    uri: 192.0.2.2:502
     id: 1
     register:
-      address: 3502
+      address: 3502 # Pac
       type: input
       decode: uint32s
 ```
@@ -913,8 +920,9 @@ If you want to contribute configurations to this repository please open a Pull R
 
 ```yaml
 - type: tesla
-  uri: http://192.0.2.2/
+  uri: https://192.0.2.2/
   usage: battery
+  password: *** # for user 'customer'
 ```
 
 <a id="meter-tesla-powerwall-grid-meter"></a>
@@ -922,8 +930,9 @@ If you want to contribute configurations to this repository please open a Pull R
 
 ```yaml
 - type: tesla
-  uri: http://192.0.2.2/
+  uri: https://192.0.2.2/
   usage: grid
+  password: *** # for user 'customer'
 ```
 
 <a id="meter-tesla-powerwall-pv-meter"></a>
@@ -931,8 +940,64 @@ If you want to contribute configurations to this repository please open a Pull R
 
 ```yaml
 - type: tesla
-  uri: http://192.0.2.2/
+  uri: https://192.0.2.2/
   usage: pv
+  password: *** # for user 'customer'
+```
+
+<a id="meter-varta-energiespeicher-battery-meter"></a>
+#### VARTA Energiespeicher (Battery Meter)
+
+```yaml
+- type: custom
+  power:
+    source: modbus
+    uri: 192.0.2.2:502
+    id: 1
+    register:
+      address: 1066 # active power
+      type: input
+      decode: int16
+    scale: -1
+  soc:
+    source: modbus
+    uri: 192.0.2.2:502
+    id: 1
+    register:
+      address: 1068 # SOC
+      type: input
+      decode: int16
+```
+
+<a id="meter-varta-energiespeicher-grid-meter"></a>
+#### VARTA Energiespeicher (Grid Meter)
+
+```yaml
+- type: custom
+  power:
+    source: modbus
+    uri: 192.0.2.2:502
+    id: 255
+    register:
+      address: 1078 # grid power
+      type: input
+      decode: int16
+    scale: -1
+```
+
+<a id="meter-varta-energiespeicher-pv-meter"></a>
+#### VARTA Energiespeicher (PV Meter)
+
+```yaml
+- type: custom
+  power:
+    source: modbus
+    uri: 192.0.2.2:502
+    id: 255
+    register:
+      address: 1102 # PV-sensor power
+      type: input
+      decode: uint16
 ```
 
 <a id="meter-vzlogger-http"></a>
@@ -979,6 +1044,22 @@ If you want to contribute configurations to this repository please open a Pull R
 
 ### Chargers
 
+
+<a id="charger-abl-emh--senec-wallbox-pro"></a>
+#### ABL eMH / SENEC.Wallbox pro
+
+```yaml
+- type: abl
+  # chargers based on the ABL EVCC2/3 controller
+  # chose either locally attached on serial port:
+  device: /dev/ttyUSB0
+  baudrate: 38400
+  comset: 8E1
+  # or via external TCP-RS485 translator:
+  # uri: 192.0.2.2:502
+  id: 1 
+  # an evcc sponsortoken is required for using this charger
+```
 
 <a id="charger-easee-home-cloud-api"></a>
 #### Easee Home (Cloud API)
@@ -1256,7 +1337,7 @@ If you want to contribute configurations to this repository please open a Pull R
     power: true
     energy: true
     currents: true
-    encoding: sdm # add only when SDM meter is connected, see https://github.com/andig/evcc/discussions/1398
+    encoding: sdm # add only when SDM meter is connected, see https://github.com/evcc-io/evcc/discussions/1398
 ```
 
 
@@ -1483,9 +1564,10 @@ If you want to contribute configurations to this repository please open a Pull R
 - type: tesla
   title: Model S # display name for UI
   capacity: 90 # kWh
-  user: # email
-  password: # password
-  vin: WTSLA...
+  tokens:
+    access: ...
+    refresh: ...
+  vin: # optional
 ```
 
 <a id="vehicle-vw-e-up-e-golf-etc"></a>
