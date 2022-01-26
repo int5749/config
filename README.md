@@ -17,6 +17,7 @@ If you want to contribute configurations to this repository please open a Pull R
 ## Chargers
 
 - [ABL eMH / SENEC.Wallbox pro](#charger-abl-emh--senec-wallbox-pro)
+- [Alfen Eve](#charger-alfen-eve)
 - [Alphatec Wallbox Mini](#charger-alphatec-wallbox-mini)
 - [cFos PowerBrain](#charger-cfos-powerbrain)
 - [Daheimladen (Cloud API)](#charger-daheimladen-cloud-api)
@@ -1306,6 +1307,16 @@ If you want to contribute configurations to this repository please open a Pull R
   # or via external TCP-RS485 translator:
   # uri: 192.0.2.2:502
   id: 1 
+  # an evcc sponsortoken is required for using this charger
+```
+
+<a id="charger-alfen-eve"></a>
+#### Alfen Eve
+
+```yaml
+- type: alfen
+  uri: 192.0.2.2:502 # TCP ModBus address
+  id: 1
   # an evcc sponsortoken is required for using this charger
 ```
 
