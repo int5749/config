@@ -1,6 +1,10 @@
 # Configuration examples for EVCC
 
-[![Build Status](https://github.com/evcc-io/config/workflows/Build/badge.svg)](https://github.com/evcc-io/config/actions?query=workflow%3ABuild)
+---
+
+***🚚 Outdated Information. For documentation and example configurations visit [docs.evcc.io](https://docs.evcc.io/). 🚚***
+
+---
 
 Configuration examples for the [EVCC EV Charge Controller](https://github.com/evcc-io/evcc).
 
