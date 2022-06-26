@@ -7,13 +7,12 @@ import (
 func init() {
 	template := registry.Template{
 		Class:  "charger",
-		Type:   "abl",
-		Name:   "ABL eMH",
-		Sample: `# chargers based on the ABL EVCC2/3 controller
-# chose either locally attached on serial port:
+		Type:   "alphatec",
+		Name:   "Alphatec Wallbox Mini",
+		Sample: `# chose either locally attached on serial port:
 device: /dev/ttyUSB0
-baudrate: 38400
-comset: 8E1
+baudrate: 9600
+comset: 8N1
 # or via external TCP-RS485 translator:
 # uri: 192.0.2.2:502
 id: 1 

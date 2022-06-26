@@ -11,7 +11,7 @@ func init() {
 		Name:   "Generic",
 		Sample: `title: Mein Auto # display name for UI
 capacity: 50 # byttery capacity (kWh)
-charge: # battery soc (%)
+soc: # battery soc (%)
   source: # plugin type
   # ...
 status: # optional charge status (A..F)
@@ -19,8 +19,7 @@ status: # optional charge status (A..F)
   # ...
 range: # optional electric range (km)
   source: # plugin type
-  # ...
-cache: 5m # optional cache duration`,
+  # ...`,
 	}
 
 	registry.Add(template)

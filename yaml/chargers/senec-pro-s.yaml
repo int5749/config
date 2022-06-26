@@ -1,5 +1,5 @@
 type: heidelberg
-name: Heidelberg Energy Control (Modbus RTU)
+name: SENEC.Wallbox pro s
 sample: |
   device: /dev/ttyUSB0
   baudrate: 19200
